@@ -20,7 +20,7 @@ module.exports = {
     prism: {
       additionalLanguages: ["dart", "yaml"],
     },
-    image: '/img/cover.png',
+    image: "/img/cover.png",
 
     navbar: {
       title: "Riverpod",
@@ -39,6 +39,10 @@ module.exports = {
           href: "https://github.com/rrousselGit/river_pod",
           label: "GitHub",
           position: "right",
+        },
+        {
+          type: "localeDropdown",
+          position: "left",
         },
       ],
     },
@@ -95,4 +99,8 @@ module.exports = {
       },
     ],
   ],
+  i18n: {
+    defaultLocale: "en",
+    locales: ["en", "ja"],
+  }
 };
