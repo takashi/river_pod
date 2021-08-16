@@ -1,30 +1,27 @@
 ---
-title: Providers
+title: プロバイダ
 ---
 
-Now that we have installed [Riverpod], let's talk about "providers".
+[Riverpod] をインストールしたところで、"プロバイダ" について話しましょう。
 
-Providers are the most important part of a [Riverpod] application.  
-A provider is an object that encapsulate a piece of state and allows listening
-to that state.
+プロバイダは [Riverpod] アプリケーションにおいて最も重要な部分を担っています。
+プロバイダは状態の一部をカプセル化し、その状態の購読を可能にするオブジェクトです。
 
-## Why use providers?
+## なぜプロバイダを使うのか？
 
-By wrapping a piece of state in a provider, this:
+状態の一部をプロバイダでラップすることによって:
 
-- Allows easily accessing that state in multiple locations.  
-  Providers are a complete replacement for patterns like Singletons,
-  Service Locators, Dependency Injection or InheritedWidgets.
+- 複数の場所でその状態に簡単にアクセスできるようになります。
+  Service Locators、Dependency Injection、InheritedWidgets などのパターンを完全に置き換えるものです。
 
-- Simplifies combining this state with others.  
-  Ever struggled merging multiple objects into one? This scenario is built
-  directly inside providers, with a simple syntax.
+- 状態同士を組み合わせることを簡単にします。複数のオブジェクトを1つにまとめるのに苦労したことはありませんか？
+  プロバイダを使えば簡単な構文でこれを解決できます。
 
-- Enables performance optimisations.  
+- Enables performance optimisations.
   Whether for filtering widget rebuilds or for caching expensive state computations;
   providers ensure that only what is impacted by a state change is recomputed.
 
-- Increases the testability of your application.  
+- Increases the testability of your application.
   With providers, you do not need complex `setUp`/`tearDown` steps. Furthermore,
   any provider can be overridden to behave differently during test, which
   allows easily testing a very specific behavior.
@@ -44,35 +41,35 @@ final myProvider = Provider((ref) {
 ```
 
 :::note
-Do not be afraid by the global aspect of providers.  
+Do not be afraid by the global aspect of providers.
 Providers are fully immutable. Declaring a provider is no different from declaring
 a function, and is testable and maintainable.
 :::
 
 This snippet consists of three components:
 
-- `final myProvider`, the declaration of a variable.  
+- `final myProvider`, the declaration of a variable.
   This variable is what we will use in the future to read the state of our provider.
   It should always be immutable.
 
-- `Provider`, the provider that we decided to use.  
+- `Provider`, the provider that we decided to use.
   [Provider] is the most basic of all providers. It exposes an object that never
-  changes.  
+  changes.
   We could replace [Provider] with other providers like [StreamProvider] or
   [StateNotifierProvider], to change how the value is interacted with.
 
-- A function that creates the shared state.  
+- A function that creates the shared state.
   That function will always receive an object called `ref` as a parameter. This object
   allows us to read other providers or to perform some operations when the state
   of our provider will be destroyed.
 
 The type of the object created by the function passed to a provider depends on
-the provider used.  
+the provider used.
 For example, the function of a [Provider] can create any object.
 On the other hand, [StreamProvider]'s callback will be expected to return a [Stream].
 
 :::info
-You can declare as many providers as you want without limitations.  
+You can declare as many providers as you want without limitations.
 As opposed to when using `package:provider`, in [Riverpod] we can have two
 providers expose a state of the same "type":
 
@@ -120,7 +117,7 @@ final example = StreamProvider.autoDispose((ref) {
 ```
 
 :::note
-Depending on the provider used, it may already take care of the clean-up process.  
+Depending on the provider used, it may already take care of the clean-up process.
 For example, [StateNotifierProvider] will call the `dispose` method of a `StateNotifier`.
 :::
 
@@ -129,7 +126,7 @@ For example, [StateNotifierProvider] will call the `dispose` method of a `StateN
 All Providers have a built-in way to add extra functionalities to your different providers.
 
 They may add new features to the `ref` object or change slightly how the provider
-is consumed.  
+is consumed.
 Modifiers can be used on all providers, with a syntax similar to named constructor:
 
 ```dart
