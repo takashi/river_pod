@@ -5,7 +5,7 @@ title: プロバイダ
 [Riverpod] をインストールしたところで、"プロバイダ" について話しましょう。
 
 プロバイダは [Riverpod] アプリケーションにおいて最も重要な部分を担っています。
-プロバイダは状態の一部をカプセル化し、その状態の購読を可能にするオブジェクトです。
+プロバイダは状態の一部をカプセル化し、その状態を待ち受けることを可能にするオブジェクトです。
 
 ## なぜプロバイダを使うのか？
 
@@ -130,7 +130,7 @@ final myFamilyProvider = Provider.family<String, int>((ref, id) => '$id');
 
 現時点では、2 つの修飾子が利用可能です:
 
-- [`.autoDispose`](/docs/concepts/modifiers/auto_dispose) はプロバイダを、そのステートがもう購読されていない場合に、そのステートを破棄するように変更します。
+- [`.autoDispose`](/docs/concepts/modifiers/auto_dispose) はプロバイダを、そのステートがもう参照されていない場合に、そのステートを破棄するように変更します。
 - [`.family`](/docs/concepts/modifiers/family) はプロバイダを外部の引数とともに作成できるようにします。
 
 :::note
